@@ -2,11 +2,12 @@ pipeline {
     agent any
 
     tools {
-    jdk 'JDK21'
-    maven 'Maven-3'
-}
+        jdk 'JDK21'
+        maven 'Maven-3'
+    }
 
     stages {
+
         stage('Checkout') {
             steps {
                 git branch: 'main',
@@ -23,22 +24,82 @@ pipeline {
                             mvn -f "$service/pom.xml" clean
                         fi
                     done
-
                 '''
             }
         }
 
-        stage('build') {
+        stage('Maven Build') {
             steps {
                 sh '''
                     for service in ecommerce-microservices/*/; do
                         if [ -f "$service/pom.xml" ]; then
-                            echo "building $service"
+                            echo "Building $service"
                             mvn -f "$service/pom.xml" package -DskipTests
                         fi
                     done
-
                 '''
+            }
+        }
+
+        stage('Docker Build') {
+            steps {
+                sh '''
+                    for service in ecommerce-microservices/*/; do
+                        if [ -f "$service/Dockerfile" ]; then
+                            echo "Building Docker image for $service"
+
+                            service_name=$(basename "$service")
+
+                            docker build -t "$service_name:latest" "$service"
+                        fi
+                    done
+                '''
+            }
+        }
+
+        stage('Docker Login') {
+            steps {
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'dockerhub-credentials',
+                        usernameVariable: 'DOCKER_USERNAME',
+                        passwordVariable: 'DOCKER_PASSWORD'
+                    )
+                ]) {
+                    sh '''
+                        echo "$DOCKER_PASSWORD" | docker login \
+                            -u "$DOCKER_USERNAME" \
+                            --password-stdin
+                    '''
+                }
+            }
+        }
+
+        stage('Docker Push') {
+            steps {
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'dockerhub-credentials',
+                        usernameVariable: 'DOCKER_USERNAME',
+                        passwordVariable: 'DOCKER_PASSWORD'
+                    )
+                ]) {
+                    sh '''
+                        for service in ecommerce-microservices/*/; do
+                            if [ -f "$service/Dockerfile" ]; then
+                                service_name=$(basename "$service")
+
+                                echo "Pushing $service_name"
+
+                                docker tag "$service_name:latest" \
+                                    "$DOCKER_USERNAME/$service_name:latest"
+
+                                docker push \
+                                    "$DOCKER_USERNAME/$service_name:latest"
+                            fi
+                        done
+                    '''
+                }
             }
         }
     }
