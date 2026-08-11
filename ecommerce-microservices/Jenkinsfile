@@ -12,7 +12,7 @@ pipeline {
         stage('Clean') {
             steps {
                 sh '''
-                    for service in */; do
+                    for service in ecommerce-microservices/*/; do
                         if [ -f "$service/pom.xml" ]; then
                             echo "Cleaning $service"
                             mvn -f "$service/pom.xml" clean
@@ -26,7 +26,7 @@ pipeline {
         stage('build') {
             steps {
                 sh '''
-                    for service in */; do
+                    for service in ecommerce-microservices/*/; do
                         if [ -f "$service/pom.xml" ]; then
                             echo "building $service"
                             mvn -f "$service/pom.xml" package -DskipTests
