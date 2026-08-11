@@ -1,0 +1,58 @@
+0:12:50 Microsoft.Shutdown.TabStripModel.InternalCloseTabsImpl_ClosedAll
+0:12:50 Microsoft.Shutdown.TabStripModel.SendDetachWebContentsNotifications
+0:12:50 Browser6 Close Tab6 at 0
+0:12:50 Microsoft.UnloadController.ClearUnloadState
+0:12:50 Tab6 WebContentsDestroyed
+0:12:50 Microsoft.UnloadController.IsUnclosableApp_IsNotWebApp
+0:12:50 Microsoft.UnloadController.HasCompletedUnloadProcessing_True
+0:12:50 Microsoft.Shutdown.OnWindowClosing
+0:12:50 Microsoft.UnloadController.IsUnclosableApp_IsNotWebApp
+0:12:50 Microsoft.UnloadController.HasCompletedUnloadProcessing_True
+0:12:50 Microsoft.Shutdown.OnWindowClosing_MaybeClearBrowsingDataOnExit
+0:12:50 Microsoft.Shutdown.OnWindowClosing_ClearBrowsingDataOnExitNotInProgress
+0:12:50 Microsoft.Shutdown.OnWindowClosingPostClearBrowsingData_NoBrowsingDataCleared
+0:12:50 Widget Closed: BrowserWidget
+0:12:50 Microsoft.UnloadController.TabStripEmpty
+0:12:50 Microsoft.UnloadController.HasCompletedUnloadProcessing_True
+0:12:50 Microsoft.Shutdown.OnWindowClosing
+0:12:50 Microsoft.Shutdown.OnWindowClosing_DeleteScheduled
+0:12:50 Microsoft.Browser_Removed
+0:12:50 Microsoft.NewBrowser_Popup
+0:12:50 Microsoft.BrowserList.AddBrowser
+0:12:50 Browser8 Insert active Tab8 at 0
+0:12:50 Tab8 StartNav35 #auto_toplevel
+0:12:50 Tab8 StartNav36 #typed
+0:12:50 Tab8 FinishNav36 ERR_ABORTED
+0:12:50 Tab8 StartNav37 #typed
+0:12:50 Tab8 FinishNav35
+0:12:50 Tab8 PageLoad
+0:12:50 Tab8 FinishNav37
+0:12:50 Tab8 PageLoad
+0:13:17 Tab8 StartNav38 #typed
+0:13:17 Tab8 FinishNav38 ERR_ABORTED
+0:13:17 Tab8 StartNav39 #typed
+0:13:17 Tab8 FinishNav39
+0:13:17 Tab8 PageLoad
+0:13:18 Tab8 StartNav40 #typed
+0:13:18 Tab8 FinishNav40
+0:13:18 Tab8 PageLoad
+0:13:39 Tab8 StartNav41 #typed
+0:13:39 Tab8 FinishNav41
+0:13:39 Tab8 PageLoad
+0:16:53 Tab8 StartNav42 #typed
+0:16:53 Tab8 FinishNav42 ERR_ABORTED
+0:16:53 Tab8 StartNav43 #typed
+0:16:53 Tab8 FinishNav43
+0:16:53 Tab8 PageLoad
+0:16:55 Tab8 StartNav44 #typed
+0:16:55 Tab8 FinishNav44 ERR_ABORTED
+0:16:55 Tab8 StartNav45 #typed
+0:16:55 Tab8 FinishNav45
+0:16:55 Tab8 PageLoad
+0:16:56 Tab8 StartNav46 #typed
+0:16:56 Tab8 FinishNav46
+0:16:56 Tab8 PageLoad
+0:16:57 Tab8 StartNav47 #typed
+0:16:57 Tab8 FinishNav47
+0:16:57 Tab8 PageLoad
+0:20:05 Microsoft.UnloadController.IsUnclosableApp_IsNotWebApp

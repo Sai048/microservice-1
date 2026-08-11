@@ -1,0 +1,2 @@
+spring.application.name=discovery
+spring.config.import=optional:configsever:http://localhost:8888
