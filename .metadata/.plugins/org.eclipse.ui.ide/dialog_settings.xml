@@ -31,7 +31,7 @@
 		<item key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
-		<item key="WizardProjectsImportPage.STORE_SKIP_DOT_FOLDERS" value="true"/>
+		<item key="WizardProjectsImportPage.STORE_SKIP_DOT_FOLDERS" value="false"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
 			<item value="C:\Users\saite\Documents\workspace-spring-tools-for-eclipse-5.2.0.RELEASE\ecommerce-microservices"/>
 			<item value="C:\Users\saite\Documents\workspace-spring-tools-for-eclipse-5.2.0.RELEASE\ecommerce-microservices\services\confi-server"/>
