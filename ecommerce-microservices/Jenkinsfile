@@ -1,0 +1,40 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/Sai048/microservice-1.git'
+            }
+        }
+
+        stage('Clean') {
+            steps {
+                sh '''
+                    for service in */; do
+                        if [ -f "$service/pom.xml" ]; then
+                            echo "Cleaning $service"
+                            mvn -f "$service/pom.xml" clean
+                        fi
+                    done
+
+                '''
+            }
+        }
+
+        stage('build') {
+            steps {
+                sh '''
+                    for service in */; do
+                        if [ -f "$service/pom.xml" ]; then
+                            echo "building $service"
+                            mvn -f "$service/pom.xml" package -DskipTests
+                        fi
+                    done
+
+                '''
+            }
+        }
+    }
+}
