@@ -121,5 +121,14 @@ pipeline {
                 }
             }
         }
+
+
+        stage('Clean Images') {
+            steps {
+                sh '''
+                   sudo docker image prune -a -f
+                '''
+            }
+        }
     }
 }
