@@ -133,6 +133,13 @@ pipeline {
 
         stage('Update Kubernetes Manifests') {
             steps {
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'github-manifests',
+                        usernameVariable: 'GITHUB_USERNAME',
+                        passwordVariable: 'GITHUB_TOKEN'
+                    )
+                ])} {
                 sh '''
                     rm -rf ecommerce-k8s-manifests
 
