@@ -1,9 +1,15 @@
+
+
 pipeline {
     agent any
 
     tools {
         jdk 'JDK21'
         maven 'Maven-3'
+    }
+
+    environment {
+        IMAGE_TAG = "${env.GIT_COMMIT.take(7)}"
     }
 
     stages {
@@ -44,13 +50,19 @@ pipeline {
         stage('Docker Build') {
             steps {
                 sh '''
+                    echo "Docker image tag: $IMAGE_TAG"
+
                     for service in ecommerce-microservices/*/; do
                         if [ -f "$service/Dockerfile" ]; then
-                            echo "Building Docker image for $service"
 
                             service_name=$(basename "$service")
 
-                            docker build -t "$service_name:latest" "$service"
+                            echo "Building $service_name:$IMAGE_TAG"
+
+                            docker build \
+                                -t "$service_name:$IMAGE_TAG" \
+                                "$service"
+
                         fi
                     done
                 '''
@@ -86,17 +98,24 @@ pipeline {
                 ]) {
                     sh '''
                         for service in ecommerce-microservices/*/; do
+
                             if [ -f "$service/Dockerfile" ]; then
+
                                 service_name=$(basename "$service")
 
-                                echo "Pushing $service_name"
+                                echo "Tagging $service_name:$IMAGE_TAG"
 
-                                docker tag "$service_name:latest" \
-                                    "$DOCKER_USERNAME/$service_name:latest"
+                                docker tag \
+                                    "$service_name:$IMAGE_TAG" \
+                                    "$DOCKER_USERNAME/$service_name:$IMAGE_TAG"
+
+                                echo "Pushing $DOCKER_USERNAME/$service_name:$IMAGE_TAG"
 
                                 docker push \
-                                    "$DOCKER_USERNAME/$service_name:latest"
+                                    "$DOCKER_USERNAME/$service_name:$IMAGE_TAG"
+
                             fi
+
                         done
                     '''
                 }
