@@ -153,7 +153,7 @@ pipeline {
                         sed -i "s|image: sai048/config-server:.*|image: sai048/config-server:$IMAGE_TAG|g" deployments/deployment.yml
                         sed -i "s|image: sai048/discovery:.*|image: sai048/discovery:$IMAGE_TAG|g" deployments/deployment.yml
                         sed -i "s|image: sai048/products:.*|image: sai048/products:$IMAGE_TAG|g" deployments/deployment.yml
-                        sed -i "s|image: sai048/cart:.*|image: sai048/cart:$IMAGE_TAG|g" deployments/deployment.yml
+                        // sed -i "s|image: sai048/cart:.*|image: sai048/cart:$IMAGE_TAG|g" deployments/deployment.yml
 
                         git add deployments/deployment.yml
 
