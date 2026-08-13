@@ -145,7 +145,7 @@ pipeline {
 
                         git clone https://github.com/Sai048/ecommerce-k8s-manifests.git
 
-                        cd ecommerce-k8s-manifests
+                        cd ecommerce-k8s-manifests/manifests/deployments
 
                         git config user.name "Sai_048"
                         git config user.email "saitejabellamkonda2002@example.com"
